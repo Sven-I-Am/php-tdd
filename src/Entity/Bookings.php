@@ -11,25 +11,25 @@ class Bookings
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\ManyToOne(targetEntity: Room::class, inversedBy: 'bookings')]
     #[ORM\JoinColumn(nullable: false)]
-    private $room;
+    private int $room;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'bookings')]
     #[ORM\JoinColumn(nullable: false)]
-    private $userId;
+    private int $userId;
 
     #[ORM\Column(type: 'datetime')]
-    private $start_date;
+    private string $start_date;
 
     #[ORM\Column(type: 'datetime')]
-    private $end_date;
+    private string $end_date;
 
 
     #[ORM\Column(type: 'float')]
-    private $duration;
+    private float $duration;
 
     public function __construct(string $start_date, string $end_date){
       $this->start_date = $start_date;
@@ -42,24 +42,24 @@ class Bookings
         return $this->id;
     }
 
-    public function getRoom(): ?Room
+    public function getRoom(): int
     {
         return $this->room;
     }
 
-    public function setRoom(?Room $room): self
+    public function setRoom(int $room): self
     {
         $this->room = $room;
 
         return $this;
     }
 
-    public function getUserId(): ?User
+    public function getUserId(): int
     {
         return $this->userId;
     }
 
-    public function setUserId(?User $userId): self
+    public function setUserId(int $userId): self
     {
         $this->userId = $userId;
 
@@ -71,7 +71,7 @@ class Bookings
         return $this->start_date;
     }
 
-    public function setStartDate(\DateTimeInterface $start_date): self
+    public function setStartDate(string $start_date): self
     {
         $this->start_date = $start_date;
 
@@ -83,7 +83,7 @@ class Bookings
         return $this->end_date;
     }
 
-    public function setEndDate(\DateTimeInterface $end_date): self
+    public function setEndDate(string $end_date): self
     {
         $this->end_date = $end_date;
 
@@ -95,7 +95,7 @@ class Bookings
         return $this->duration;
     }
 
-    public function setDuration(\DateInterval $duration): self
+    public function setDuration(float $duration): self
     {
         $this->duration = $duration;
 
@@ -115,6 +115,11 @@ class Bookings
     public function getRent():float
     {
       return ceil($this->getDuration())*2;
+    }
+
+    public function checkAvailability(Bookings $prevBooking, Bookings $nextBooking):bool
+    {
+      return ($this->getStartDate()>=$prevBooking->getEndDate() && $this->getStartDate()<=$nextBooking->getStartDate());
     }
 
     public function canBook(): bool

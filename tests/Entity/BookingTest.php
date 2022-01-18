@@ -64,4 +64,12 @@
       $booking = new Bookings($startDate, $endDate);
       $this->assertEquals($expectedOutput, $booking->canBook());
     }
+
+    public function testAvailability():void
+    {
+      $prevBooking = new Bookings("2022-01-19 09:00:00", "2022-01-19 12:15:00");
+      $curBooking = new Bookings("2022-01-19 12:00:00", "2022-01-19 14:45:00");
+      $nextBooking = new Bookings("2022-01-19 15:00:00", "2022-01-19 17:00:00");
+      $this->assertEquals(false, $curBooking->checkAvailability($prevBooking, $nextBooking));
+    }
   }
