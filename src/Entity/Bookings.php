@@ -21,6 +21,22 @@ class Bookings
     #[ORM\JoinColumn(nullable: false)]
     private $userId;
 
+    #[ORM\Column(type: 'datetime')]
+    private $start_date;
+
+    #[ORM\Column(type: 'datetime')]
+    private $end_date;
+
+
+    #[ORM\Column(type: 'float')]
+    private $duration;
+
+    public function __construct(string $start_date, string $end_date){
+      $this->start_date = $start_date;
+      $this->end_date = $end_date;
+      $this->duration = abs(strtotime($this->end_date) - strtotime($this->start_date))/(60*60);
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -48,5 +64,46 @@ class Bookings
         $this->userId = $userId;
 
         return $this;
+    }
+
+    public function getStartDate(): string
+    {
+        return $this->start_date;
+    }
+
+    public function setStartDate(\DateTimeInterface $start_date): self
+    {
+        $this->start_date = $start_date;
+
+        return $this;
+    }
+
+    public function getEndDate(): string
+    {
+        return $this->end_date;
+    }
+
+    public function setEndDate(\DateTimeInterface $end_date): self
+    {
+        $this->end_date = $end_date;
+
+        return $this;
+    }
+
+    public function getDuration(): float
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(\DateInterval $duration): self
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function isLessThanFour(): bool
+    {
+      return $this->getDuration()<=4;
     }
 }
