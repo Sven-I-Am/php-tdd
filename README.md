@@ -64,6 +64,9 @@ Logos are added on a project basis, I have them stored in a separate folder loca
   - The first test gave me some grief, but it was a matter of following the clues given in the error messages and then checking the class constructors type declarations (bool and Boolean are not the same!)
   - The second test ran smoother, and I leaned it down to check only for valid timestamps, since I'll be adding a test to check that the endDate is always later than the startDate
   - I added a check for the endDate to ensure the end date is always after the start date, and I made the duration check dependant on the endDatecheck
+  - I rewrote my previous check and added a check to ensure both duration and endDate are true before returning true,
+    - this will allow me to have specific error messages if false is returned on either
+  - 
 
 ## What I learned from this exercise
 <!--here you can write anything from a short summary on the subject of the exercise, a readable description of the new skills/knowledge you acquire, to an in depth clarification. As long as it helps you retain what you learned, or easily find the information when working on future projects-->

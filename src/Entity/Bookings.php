@@ -107,8 +107,13 @@ class Bookings
       return strtotime($this->getStartDate())<strtotime($this->getEndDate());
     }
 
+    public function checkDuration():bool
+    {
+      return $this->getDuration() <= 4;
+    }
+
     public function canBook(): bool
     {
-      return ($this->checkEndDate() && $this->getDuration()<=4);
+      return ($this->checkEndDate() && $this->checkDuration());
     }
 }
