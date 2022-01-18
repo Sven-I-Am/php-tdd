@@ -59,6 +59,8 @@ Logos are added on a project basis, I have them stored in a separate folder loca
 - day 2 (:data: 18/01/2022)
   - today started with re-watching the provided [YouTube video on TDD](https://www.youtube.com/watch?v=WMqe0jkqPMQ&ab_channel=PeteGeorge)
   - I then created the requested entities and their relations using the `symfony console make:entity` command
+  - Using `symfony console make:migration` followed by `symfony console doctrine:migrations:migrate` I created the database
+  - now I can start writing the tests (the first test is provided through [the exercise readme](https://github.com/becodeorg/ANT-Lamarr-5.34/tree/main/3.The-Mountain/TDD#general-flow))
   - 
 
 ## What I learned from this exercise
