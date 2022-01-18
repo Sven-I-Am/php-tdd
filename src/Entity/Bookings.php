@@ -102,8 +102,17 @@ class Bookings
         return $this;
     }
 
-    public function isLessThanFour(): bool
+    public function checkEndDate(): bool
     {
-      return $this->getDuration()<=4;
+      return strtotime($this->getStartDate())<strtotime($this->getEndDate());
+    }
+
+    public function canBook(): bool
+    {
+      if($this->checkEndDate()){
+        return $this->getDuration()<=4;
+      } else {
+        return false;
+      }
     }
 }
