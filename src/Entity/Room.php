@@ -6,6 +6,7 @@ use App\Repository\RoomRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 
 #[ORM\Entity(repositoryClass: RoomRepository::class)]
 class Room
@@ -24,9 +25,10 @@ class Room
     #[ORM\OneToMany(mappedBy: 'room', targetEntity: Bookings::class)]
     private $bookings;
 
-    public function __construct()
+    public function __construct(bool $isPremium)
     {
         $this->bookings = new ArrayCollection();
+        $this->onlyForPremiumMembers = $isPremium;
     }
 
     public function getId(): ?int
@@ -86,5 +88,12 @@ class Room
         }
 
         return $this;
+    }
+
+    public function canBook(User $user)
+    {
+      $roomPremium = $this->getOnlyForPremiumMembers();
+      $userPremium = $user->getPremiumMember();
+      return (($roomPremium && $userPremium) || !$roomPremium);
     }
 }

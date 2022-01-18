@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -31,9 +32,10 @@ class User
     #[ORM\OneToMany(mappedBy: 'userId', targetEntity: Bookings::class, orphanRemoval: true)]
     private $bookings;
 
-    public function __construct()
+    public function __construct(bool $isPremium)
     {
         $this->bookings = new ArrayCollection();
+        $this->premiumMember = $isPremium;
     }
 
     public function getId(): ?int
