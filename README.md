@@ -66,7 +66,7 @@ Logos are added on a project basis, I have them stored in a separate folder loca
   - I added a check for the endDate to ensure the end date is always after the start date, and I made the duration check dependant on the endDatecheck
   - I rewrote my previous check and added a check to ensure both duration and endDate are true before returning true,
     - this will allow me to have specific error messages if false is returned on either
-  - 
+  - I wrote the test to check if a user can pay the rent, now I have to find a way to calculate the rent based on start and end date and implement that calculation
 
 ## What I learned from this exercise
 <!--here you can write anything from a short summary on the subject of the exercise, a readable description of the new skills/knowledge you acquire, to an in depth clarification. As long as it helps you retain what you learned, or easily find the information when working on future projects-->

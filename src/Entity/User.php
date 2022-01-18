@@ -32,10 +32,11 @@ class User
     #[ORM\OneToMany(mappedBy: 'userId', targetEntity: Bookings::class, orphanRemoval: true)]
     private $bookings;
 
-    public function __construct(bool $isPremium)
+    public function __construct(bool $isPremium, int $credit)
     {
         $this->bookings = new ArrayCollection();
         $this->premiumMember = $isPremium;
+        $this->credit = $credit;
     }
 
     public function getId(): ?int
@@ -119,5 +120,10 @@ class User
         }
 
         return $this;
+    }
+
+    public function canPay(int $rent): bool
+    {
+      return $this->getCredit() >= $rent;
     }
 }

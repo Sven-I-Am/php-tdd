@@ -27,7 +27,7 @@
     public function testPremiumRoom(bool $roomVar, bool $userVar, bool $expectedOutput): void
     {
       $room = new Room($roomVar);
-      $user = new User($userVar);
+      $user = new User($userVar, 100);
 
       $this->assertEquals($expectedOutput, $room->canBook($user));
     }
