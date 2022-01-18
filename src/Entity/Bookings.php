@@ -109,10 +109,6 @@ class Bookings
 
     public function canBook(): bool
     {
-      if($this->checkEndDate()){
-        return $this->getDuration()<=4;
-      } else {
-        return false;
-      }
+      return ($this->checkEndDate() && $this->getDuration()<=4);
     }
 }
