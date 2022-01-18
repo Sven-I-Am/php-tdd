@@ -122,7 +122,7 @@ class User
         return $this;
     }
 
-    public function canPay(int $rent): bool
+    public function canPay(float $rent): bool
     {
       return $this->getCredit() >= $rent;
     }

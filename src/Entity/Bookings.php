@@ -112,6 +112,11 @@ class Bookings
       return $this->getDuration() <= 4;
     }
 
+    public function getRent():float
+    {
+      return ceil($this->getDuration())*2;
+    }
+
     public function canBook(): bool
     {
       return ($this->checkEndDate() && $this->checkDuration());

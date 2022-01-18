@@ -49,9 +49,9 @@
      * function has to start with Test
      * @dataProvider dataProviderForDuration
      */
-    public function testDuration(string $startVar, string $endVar, bool $expectedOutput): void
+    public function testDuration(string $startDate, string $endDate, bool $expectedOutput): void
     {
-      $booking = new Bookings($startVar, $endVar);
+      $booking = new Bookings($startDate, $endDate);
       $this->assertEquals($expectedOutput, $booking->checkDuration());
     }
 
@@ -59,9 +59,9 @@
      * function has to start with Test
      * @dataProvider dataProviderForBooking
      */
-    public function testBooking(string $startVar, string $endVar, bool $expectedOutput): void
+    public function testBooking(string $startDate, string $endDate, bool $expectedOutput): void
     {
-      $booking = new Bookings($startVar, $endVar);
+      $booking = new Bookings($startDate, $endDate);
       $this->assertEquals($expectedOutput, $booking->canBook());
     }
   }
