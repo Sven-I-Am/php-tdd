@@ -125,7 +125,7 @@ class Bookings
       foreach ($otherBookings as $booking){
         $checkStartBooking = strtotime($booking->getStartDate());
         $checkEndBooking = strtotime($booking->getEndDate());
-        if (($newStartBooking > $checkStartBooking && $newStartBooking < $checkEndBooking) || ($newEndBooking > $checkStartBooking && $newEndBooking < $checkEndBooking)){
+        if (($newStartBooking > $checkStartBooking && $newStartBooking < $checkEndBooking) || ($newEndBooking > $checkStartBooking && $newEndBooking < $checkEndBooking) || ($newStartBooking === $checkStartBooking && $newEndBooking === $checkEndBooking)){
           $errors++;
         }
       }

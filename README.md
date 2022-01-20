@@ -75,6 +75,7 @@ Logos are added on a project basis, I have them stored in a separate folder loca
   - today will be all about getting that final must-have check working.
   - So far it appears that the availability test works as intended. I check the new bookings start and end hour versus an array of other bookings start and end hours
   - As long as I make sure the array derived from the bookings table in the database is filtered by the appropriate room id, this should hold
+  - I added an extra condition to the availability check to make sure two exact matching bookings are also not allowed
 
 ## What I learned from this exercise
 <!--here you can write anything from a short summary on the subject of the exercise, a readable description of the new skills/knowledge you acquire, to an in depth clarification. As long as it helps you retain what you learned, or easily find the information when working on future projects-->
