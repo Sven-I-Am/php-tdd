@@ -56,7 +56,7 @@ Logos are added on a project basis, I have them stored in a separate folder loca
   - I then spent the hours after lunch reading up on unit testing
   - Got my environment set up right before the end of the day
   - Started this README and created + did first commit to the remote repository
-- day 2 (:data: 18/01/2022)
+- day 2 (:date: 18/01/2022)
   - today started with re-watching the provided [YouTube video on TDD](https://www.youtube.com/watch?v=WMqe0jkqPMQ&ab_channel=PeteGeorge)
   - I then created the requested entities and their relations using the `symfony console make:entity` command
   - Using `symfony console make:migration` followed by `symfony console doctrine:migrations:migrate` I created the database
@@ -71,6 +71,10 @@ Logos are added on a project basis, I have them stored in a separate folder loca
   - I'm currently working on adding a test for availability
     - So far I can check true or false with predefined bookings (previous and next)
     - Will have to think about how I want to get the data from the database and run the checks across all bookings for a specific room
+- day 3 (:date: 20/01/2022)
+  - today will be all about getting that final must-have check working.
+  - So far it appears that the availability test works as intended. I check the new bookings start and end hour versus an array of other bookings start and end hours
+  - As long as I make sure the array derived from the bookings table in the database is filtered by the appropriate room id, this should hold
 
 ## What I learned from this exercise
 <!--here you can write anything from a short summary on the subject of the exercise, a readable description of the new skills/knowledge you acquire, to an in depth clarification. As long as it helps you retain what you learned, or easily find the information when working on future projects-->

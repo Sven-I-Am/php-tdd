@@ -117,9 +117,19 @@ class Bookings
       return ceil($this->getDuration())*2;
     }
 
-    public function checkAvailability(Bookings $prevBooking, Bookings $nextBooking):bool
+    public function checkAvailability(array $otherBookings):bool
     {
-      return ($this->getStartDate()>=$prevBooking->getEndDate() && $this->getStartDate()<=$nextBooking->getStartDate());
+      $newStartBooking = strtotime($this->getStartDate());
+      $newEndBooking = strtotime($this->getEndDate());
+      $errors = 0;
+      foreach ($otherBookings as $booking){
+        $checkStartBooking = strtotime($booking->getStartDate());
+        $checkEndBooking = strtotime($booking->getEndDate());
+        if (($newStartBooking > $checkStartBooking && $newStartBooking < $checkEndBooking) || ($newEndBooking > $checkStartBooking && $newEndBooking < $checkEndBooking)){
+          $errors++;
+        }
+      }
+      return ($errors === 0);
     }
 
     public function canBook(): bool

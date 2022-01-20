@@ -34,6 +34,17 @@
       ];
     }
 
+    public function dataProviderForAvailability(): array
+    {
+      $newBooking = new Bookings("2022-01-21 11:00:00", "2022-01-21 12:00:00");
+      return [
+      [$newBooking, [new Bookings("2022-01-21 08:00:00", "2022-01-21 10:30:00"), new Bookings("2022-01-21 13:00:00", "2022-01-21 15:00:00"), new Bookings("2022-01-21 15:00:00", "2022-01-21 17:00:00")], true],
+      [$newBooking, [new Bookings("2022-01-21 08:00:00", "2022-01-21 11:30:00"), new Bookings("2022-01-21 13:00:00", "2022-01-21 15:00:00"), new Bookings("2022-01-21 15:00:00", "2022-01-21 17:00:00")], false],
+      [$newBooking, [new Bookings("2022-01-21 08:00:00", "2022-01-21 10:30:00"), new Bookings("2022-01-21 11:45:00:00", "2022-01-21 15:00:00"), new Bookings("2022-01-21 15:00:00", "2022-01-21 17:00:00")], false],
+      [$newBooking, [new Bookings("2022-01-21 08:00:00", "2022-01-21 11:15:00"), new Bookings("2022-01-21 11:30:00", "2022-01-21 15:00:00"), new Bookings("2022-01-21 15:00:00", "2022-01-21 17:00:00")], false],
+      ];
+    }
+
 
     /**
      * function has to start with Test
@@ -65,11 +76,12 @@
       $this->assertEquals($expectedOutput, $booking->canBook());
     }
 
-    public function testAvailability():void
+    /**
+     * function has to start with Test
+     * @dataProvider dataProviderForAvailability
+     */
+    public function testAvailability(Bookings $newBooking, array $otherBookings, bool $expectedOutcome):void
     {
-      $prevBooking = new Bookings("2022-01-19 09:00:00", "2022-01-19 12:15:00");
-      $curBooking = new Bookings("2022-01-19 12:00:00", "2022-01-19 14:45:00");
-      $nextBooking = new Bookings("2022-01-19 15:00:00", "2022-01-19 17:00:00");
-      $this->assertEquals(false, $curBooking->checkAvailability($prevBooking, $nextBooking));
+      $this->assertEquals($expectedOutcome, $newBooking->checkAvailability($otherBookings));
     }
   }
